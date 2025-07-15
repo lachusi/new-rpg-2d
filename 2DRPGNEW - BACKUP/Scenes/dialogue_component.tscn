@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0idv67nerby"]
+
+[ext_resource type="Script" uid="uid://kah3vby6mji7" path="res://Scripts/dialogue_component.gd" id="1_uq3rk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uq3rk"]
+size = Vector2(16, 16)
+
+[node name="DialogueComponent" type="Area2D"]
+process_mode = 3
+collision_layer = 128
+collision_mask = 255
+script = ExtResource("1_uq3rk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_uq3rk")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://cqsp6q7ml632q"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_o0gvj"]
+[ext_resource type="AudioStream" uid="uid://cpiyn8km3j6h8" path="res://FX/hhurt.mp3" id="2_hjawx"]
+
+[resource]
+script = ExtResource("1_o0gvj")
+stream = ExtResource("2_hjawx")
+volume_db = -5.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0

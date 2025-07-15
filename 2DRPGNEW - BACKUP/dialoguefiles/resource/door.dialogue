@@ -1,0 +1,26 @@
+~ Start
+Player: Das Haus sieht verlassen aus. Vielleicht sollten wir mal schauen, ob jemand hier lebt.
+~ Start2
+Player: ...
+- Klopfen.
+	Bewohner: Wer ist da?
+	% Bewohner: Hau ab!
+	% Bewohner: Zu so später Stunde?
+	% Bewohner: Ich kann mich verteidigen!
+	Player: Fürchtet Euch nicht. Ich bin "Player", ich suche nach Informationen. Entschuldigt die Störung.
+	Bewohner: Was möchtest du wissen?
+	Player: ...
+	- Wo finde ich die nächste Taverne?
+		Bewohner: Neben der Schmiede hinten links.
+	- Wo befindet sich der Pfarrer gerade?
+		Bewohner: Kann ich Dir nicht sagen.
+- Die Tür gewaltvoll öffnen.
+	Player: *Öffne Tür mit Gewalt*
+	Bewohner: [[Hilfe!|Was soll das?!|Bitte tu' mir nichts!]]
+	Player: Keine Angst. Ich benötige bloß eine Bleibe.
+	Bewohner: Endlich vorbei.
+- Konversation beenden => END
+Bewohner: Bleib' stets gesund.
+- Frage erneut => Start2
+- Konversation beenden => END
+=> END

@@ -1,0 +1,25 @@
+~ Start
+Player: Vielleicht weiß der Bewohner mehr über das, was hier geschieht.
+~ Start2
+Player: ...
+- Klopfen.
+	Bewohner: Was gibt’s?!
+	% Bewohner: Schon wieder du?
+	% Bewohner: Lass mich in Ruhe!
+	% Bewohner: Ich hab keine Zeit für Besuch!
+	Player: Ich suche Informationen. Es ist wichtig.
+	Bewohner: Red schneller.
+	Player: ...
+	- Was ist mit dem alten Leuchtturm passiert?
+		Bewohner: Einsturz. Niemand sollte sich nähern.
+	- Wer führt das Dorf an?
+		Bewohner: Ein Haufen Taugenichtse, mehr nicht.
+- Tür aufbrechen.
+	Player: *Hebelt die Tür auf*
+	Bewohner: [[Frechheit!|Ich ruf die Wache!|Unverschämter Kerl!]]
+	Player: Ich muss dringend mit Euch sprechen.
+	Bewohner: Dann hättest du fragen sollen!
+Bewohner: Verzieh dich.
+- Nochmals versuchen => Start2
+- Gespräch beenden => END
+=> END

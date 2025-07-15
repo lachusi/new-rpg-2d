@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://dhs7yt3180ymy"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_gdqys"]
+[ext_resource type="AudioStream" uid="uid://ijc7dx0s1qtj" path="res://FX/punch.wav" id="2_qcc2w"]
+
+[resource]
+script = ExtResource("1_gdqys")
+stream = ExtResource("2_qcc2w")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

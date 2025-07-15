@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://dtd3vq4nsmiq2"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_bj3vd"]
+[ext_resource type="AudioStream" uid="uid://cy21qimyiocaj" path="res://FX/electric_attack.mp3" id="2_882hb"]
+
+[resource]
+script = ExtResource("1_bj3vd")
+stream = ExtResource("2_882hb")
+volume_db = 0.0
+is_2d = true
+use_random_pitch = true
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

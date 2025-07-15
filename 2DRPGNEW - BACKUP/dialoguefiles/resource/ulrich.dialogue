@@ -1,0 +1,12 @@
+~ Start
+Ulrich: [[Hi|Hallo|Moin]]
+Ulrich: Heute schon genickt?
+Player: ...
+- Äh nee, wieso?
+	Ulrich: Weil dein Nacken so aussieht, als bräuchte er eine 90° Drehung.
+- Ja klar, seitdem geht es mir besser.
+	Ulrich: Schön. Immer locker bleiben.
+- Frage erneut => Start
+- Konversation beenden => END
+Ulrich: Gesundheit ist das "A" und "O".
+=> END

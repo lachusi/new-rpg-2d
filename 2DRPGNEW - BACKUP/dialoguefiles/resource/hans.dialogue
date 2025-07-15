@@ -1,0 +1,11 @@
+~ Start
+Hans: [[Moin]], wie gehts?
+Player: ...
+- Gut und selbst?
+	Hans: Jut, muss nur wieder Kinder vom Grundstück verjagen.
+- Zieh Leine!
+	Hans: Deine Laune ist unterirdisch.
+- Frage erneut => Start
+- Konversation beenden => END
+Hans: Meine Tomaten faulen ab. Ich muss weitermachen.
+=> END

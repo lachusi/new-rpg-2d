@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbvmso4hhpcav"]
+
+[ext_resource type="Script" uid="uid://cfj7cr5eujrek" path="res://Scripts/dynamic_music_component.gd" id="1_760hw"]
+
+[node name="DynamicMusicComponent" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_760hw")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://dbjdbyxe40bcl"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_88vy8"]
+[ext_resource type="AudioStream" uid="uid://bq0ky842bmvy0" path="res://FX/bigswing.mp3" id="2_1ngyp"]
+
+[resource]
+script = ExtResource("1_88vy8")
+stream = ExtResource("2_1ngyp")
+volume_db = -5.0
+is_2d = true
+use_random_pitch = true
+pitch_min = 0.8
+pitch_max = 1.2
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

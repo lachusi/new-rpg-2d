@@ -1,0 +1,25 @@
+~ Start
+Player: Ein abgelegenes Häuschen... merkwürdig still.
+~ Start2
+Player: ...
+- Vorsichtig klopfen.
+	Bewohner: Wer ist da?!
+	% Bewohner: Ich bin bewaffnet!
+	% Bewohner: Ich habe nichts, lasst mich in Frieden!
+	% Bewohner: Geht weg!
+	Player: Ich bin kein Räuber. Ich suche nur nach Antworten.
+	Bewohner: Ich... ich höre.
+	Player: ...
+	- Was wisst ihr über die Kreaturen im Wald?
+		Bewohner: Sie meiden Feuer und laute Geräusche.
+	- Ist hier in letzter Zeit jemand vorbeigekommen?
+		Bewohner: Nur ein alter Mann mit einem Stab.
+- Tür eindrücken.
+	Player: *Tritt die Tür ein*
+	Bewohner: [[Bitte nicht!|Nein!|Warum?!]]
+	Player: Ich brauche Unterschlupf. Nur für die Nacht.
+	Bewohner: Dann geh wenigstens leise.
+Bewohner: Vergiss nicht, was Angst bedeutet.
+- Wiederholen => Start2
+- Beenden => END
+=> END

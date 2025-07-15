@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxt2fxfdjqc2p"]
+
+[ext_resource type="AudioStream" uid="uid://ijc7dx0s1qtj" path="res://FX/punch.wav" id="1_yqfgw"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_yqfgw")

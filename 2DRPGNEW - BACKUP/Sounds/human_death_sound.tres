@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://ddvpykjcqott"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_y505p"]
+[ext_resource type="AudioStream" uid="uid://3rt0b374ikjl" path="res://FX/human_death.wav" id="2_7e2g5"]
+
+[resource]
+script = ExtResource("1_y505p")
+stream = ExtResource("2_7e2g5")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

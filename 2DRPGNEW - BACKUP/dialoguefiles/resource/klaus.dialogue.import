@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bf1abknjea05c"
+path="res://.godot/imported/klaus.dialogue-c5f2d6feb1793c3888c32e58cf9923b1.tres"
+
+[deps]
+
+source_file="res://dialoguefiles/resource/klaus.dialogue"
+dest_files=["res://.godot/imported/klaus.dialogue-c5f2d6feb1793c3888c32e58cf9923b1.tres"]
+
+[params]
+
+defaults=true

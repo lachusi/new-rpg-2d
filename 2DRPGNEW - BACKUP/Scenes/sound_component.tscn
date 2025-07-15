@@ -1,0 +1,128 @@
+[gd_scene load_steps=37 format=3 uid="uid://bw4wnoo8lnda2"]
+
+[ext_resource type="Script" uid="uid://wsbop218qq8v" path="res://Sounds/sound_component.gd" id="1_nowwo"]
+[ext_resource type="Script" uid="uid://djn78lu2gf7g1" path="res://Scripts/sound_entry.gd" id="2_pnvt5"]
+[ext_resource type="Resource" uid="uid://ci876xhxqu8yg" path="res://Sounds/growl_sound.tres" id="3_tdwvl"]
+[ext_resource type="Resource" uid="uid://bxdccxkuhfenu" path="res://Sounds/headbutt_sound.tres" id="4_dboyv"]
+[ext_resource type="Resource" uid="uid://ddvpykjcqott" path="res://Sounds/human_death_sound.tres" id="5_wkf7r"]
+[ext_resource type="Resource" uid="uid://c8h11elqkh0hg" path="res://Sounds/jump_sound.tres" id="6_28lx2"]
+[ext_resource type="Resource" uid="uid://c3exf5xobtrtd" path="res://Sounds/lazerbeam_sound.tres" id="7_13jfe"]
+[ext_resource type="Resource" uid="uid://bpylsdbohns6v" path="res://Sounds/levelup_sound.tres" id="8_qjjvx"]
+[ext_resource type="Resource" uid="uid://cdteihnu5girm" path="res://Sounds/monster_attack_sound.tres" id="9_w5djs"]
+[ext_resource type="Resource" uid="uid://ct7aj0sbehlhv" path="res://Sounds/monster_death_sound.tres" id="10_tuy12"]
+[ext_resource type="Resource" uid="uid://dhs7yt3180ymy" path="res://Sounds/punch_sound.tres" id="11_yt7mh"]
+[ext_resource type="Resource" uid="uid://fq7bmkyix17g" path="res://Sounds/scissor_sound.tres" id="12_c0mxg"]
+[ext_resource type="Resource" uid="uid://cgmciaoofdqis" path="res://Sounds/walking_sound.tres" id="13_yyfj6"]
+[ext_resource type="Resource" uid="uid://dtd3vq4nsmiq2" path="res://Sounds/electric_sound.tres" id="14_wappo"]
+[ext_resource type="Resource" uid="uid://cqsp6q7ml632q" path="res://Sounds/hhurt.tres" id="15_tdwvl"]
+[ext_resource type="Resource" uid="uid://bk1ak03l7qabx" path="res://Sounds/mhurt.tres" id="16_dboyv"]
+[ext_resource type="Resource" uid="uid://uhsy2e8y547e" path="res://Sounds/swing.tres" id="17_wkf7r"]
+[ext_resource type="Resource" uid="uid://dp2w61ngt8rnf" path="res://Sounds/detection.tres" id="18_28lx2"]
+[ext_resource type="Resource" uid="uid://dbjdbyxe40bcl" path="res://Sounds/big_swing.tres" id="19_13jfe"]
+
+[sub_resource type="Resource" id="Resource_oouq4"]
+script = ExtResource("2_pnvt5")
+name = "Growl"
+data = ExtResource("3_tdwvl")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_qinxl"]
+script = ExtResource("2_pnvt5")
+name = "Headbutt"
+data = ExtResource("4_dboyv")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_xy3am"]
+script = ExtResource("2_pnvt5")
+name = "Human Death"
+data = ExtResource("5_wkf7r")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_xlasm"]
+script = ExtResource("2_pnvt5")
+name = "Jump"
+data = ExtResource("6_28lx2")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_2i7fn"]
+script = ExtResource("2_pnvt5")
+name = "Lazer"
+data = ExtResource("7_13jfe")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_ev33x"]
+script = ExtResource("2_pnvt5")
+name = "LVLUP"
+data = ExtResource("8_qjjvx")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_7repp"]
+script = ExtResource("2_pnvt5")
+name = "Monster_attack"
+data = ExtResource("9_w5djs")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_jtwq4"]
+script = ExtResource("2_pnvt5")
+name = "Monster_Death"
+data = ExtResource("10_tuy12")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_xsnr1"]
+script = ExtResource("2_pnvt5")
+name = "Punch"
+data = ExtResource("11_yt7mh")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_m6xgs"]
+script = ExtResource("2_pnvt5")
+name = "Scissor"
+data = ExtResource("12_c0mxg")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_4y136"]
+script = ExtResource("2_pnvt5")
+name = "Walk"
+data = ExtResource("13_yyfj6")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_fd8if"]
+script = ExtResource("2_pnvt5")
+name = "Electric"
+data = ExtResource("14_wappo")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_dboyv"]
+script = ExtResource("2_pnvt5")
+name = "Hurt"
+data = ExtResource("15_tdwvl")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_wkf7r"]
+script = ExtResource("2_pnvt5")
+name = "mhurt"
+data = ExtResource("16_dboyv")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_28lx2"]
+script = ExtResource("2_pnvt5")
+name = "Swing"
+data = ExtResource("17_wkf7r")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_13jfe"]
+script = ExtResource("2_pnvt5")
+name = "Detection"
+data = ExtResource("18_28lx2")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[sub_resource type="Resource" id="Resource_qjjvx"]
+script = ExtResource("2_pnvt5")
+name = "Big Swing"
+data = ExtResource("19_13jfe")
+metadata/_custom_type_script = "uid://djn78lu2gf7g1"
+
+[node name="SoundComponent" type="Node2D"]
+process_mode = 2
+script = ExtResource("1_nowwo")
+sound_entries = Array[ExtResource("2_pnvt5")]([SubResource("Resource_oouq4"), SubResource("Resource_qinxl"), SubResource("Resource_xy3am"), SubResource("Resource_xlasm"), SubResource("Resource_2i7fn"), SubResource("Resource_ev33x"), SubResource("Resource_7repp"), SubResource("Resource_jtwq4"), SubResource("Resource_xsnr1"), SubResource("Resource_m6xgs"), SubResource("Resource_4y136"), SubResource("Resource_fd8if"), SubResource("Resource_dboyv"), SubResource("Resource_wkf7r"), SubResource("Resource_28lx2"), SubResource("Resource_13jfe"), SubResource("Resource_qjjvx")])

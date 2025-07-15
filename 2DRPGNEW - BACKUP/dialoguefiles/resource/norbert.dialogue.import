@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dd1tdrq3a35ov"
+path="res://.godot/imported/norbert.dialogue-9274384edab7225a2c5538761b65abd2.tres"
+
+[deps]
+
+source_file="res://dialoguefiles/resource/norbert.dialogue"
+dest_files=["res://.godot/imported/norbert.dialogue-9274384edab7225a2c5538761b65abd2.tres"]
+
+[params]
+
+defaults=true

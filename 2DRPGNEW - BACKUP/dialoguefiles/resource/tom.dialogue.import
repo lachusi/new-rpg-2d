@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cygar4unhh506"
+path="res://.godot/imported/tom.dialogue-9c3790754aa4b2b47f9a8678cd644f78.tres"
+
+[deps]
+
+source_file="res://dialoguefiles/resource/tom.dialogue"
+dest_files=["res://.godot/imported/tom.dialogue-9c3790754aa4b2b47f9a8678cd644f78.tres"]
+
+[params]
+
+defaults=true

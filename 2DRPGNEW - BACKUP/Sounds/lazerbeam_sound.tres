@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://c3exf5xobtrtd"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_dldhu"]
+[ext_resource type="AudioStream" uid="uid://dvrlle4gmdge2" path="res://FX/lazerbeam.mp3" id="2_2udoa"]
+
+[resource]
+script = ExtResource("1_dldhu")
+stream = ExtResource("2_2udoa")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

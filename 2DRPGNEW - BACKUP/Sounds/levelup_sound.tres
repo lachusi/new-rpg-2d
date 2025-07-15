@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://bpylsdbohns6v"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_yxv4j"]
+[ext_resource type="AudioStream" uid="uid://drtgjrkbgnywu" path="res://FX/level_up.wav" id="2_x8jyo"]
+
+[resource]
+script = ExtResource("1_yxv4j")
+stream = ExtResource("2_x8jyo")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

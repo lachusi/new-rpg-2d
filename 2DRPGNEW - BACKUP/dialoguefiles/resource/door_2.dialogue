@@ -1,0 +1,25 @@
+~ Start
+Player: Ich höre Geräusche aus dem Haus...
+~ Start2
+Player: ...
+- Anklopfen.
+	Bewohner: Wer klopft da?
+	% Bewohner: Lasst mich in Ruhe!
+	% Bewohner: Ich schlafe gleich ein...
+	% Bewohner: Schon wieder jemand?
+	Player: Ich bin nur auf der Durchreise. Ich suche jemanden.
+	Bewohner: Jemand bestimmtes?
+	Player: ...
+	- Einen alten Freund, er lebt angeblich hier.
+		Bewohner: Hier lebt nur meine Familie. Versuch es beim nächsten Hof.
+	- Die Dorfälteste, sie kennt sich aus.
+		Bewohner: Die findest du meist beim Brunnen.
+- Tür eintreten.
+	Player: *Rammt die Tür*
+	Bewohner: [[Einbrecher!|Wachen!|Was in aller Welt!?]]
+	Player: Ich brauche dringend Schutz vor dem Sturm.
+	Bewohner: Das erklärt trotzdem nicht dein Verhalten!
+Bewohner: Möge dein Weg sicher sein.
+- Noch einmal fragen => Start2
+- Gespräch beenden => END
+=> END

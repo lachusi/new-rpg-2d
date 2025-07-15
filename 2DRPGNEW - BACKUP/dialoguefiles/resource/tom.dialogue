@@ -1,0 +1,11 @@
+~ Start
+Tom: [[Hi|Hallo|Moin]], was geht?
+Player: ...
+- Nicht viel. Bei dir?
+	Tom: Auch nicht viel. Leandra hat meine Lanze poliert, das war's aber auch schon.
+- Geht dich nichts an..
+	Tom: Yo, bleib mal locker du Hocker.
+- Frage erneut => Start
+- Konversation beenden => END
+Tom: Ich geh n Jibbit bauen.
+=> END

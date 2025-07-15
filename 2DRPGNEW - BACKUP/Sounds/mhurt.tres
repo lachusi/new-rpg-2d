@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://bk1ak03l7qabx"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_gb6kt"]
+[ext_resource type="AudioStream" uid="uid://bd4c06amar3cm" path="res://FX/mhurt.mp3" id="2_wga0c"]
+
+[resource]
+script = ExtResource("1_gb6kt")
+stream = ExtResource("2_wga0c")
+volume_db = -15.0
+is_2d = true
+use_random_pitch = true
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

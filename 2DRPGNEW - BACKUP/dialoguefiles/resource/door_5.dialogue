@@ -1,0 +1,25 @@
+~ Start
+Player: Vielleicht gibt's hier etwas zu kaufen.
+~ Start2
+Player: ...
+- Klopfen.
+	Bewohner: Na los, sag schnell, was du willst!
+	% Bewohner: Ich habe zu tun!
+	% Bewohner: Wenn du was kaufen willst, mach’s kurz!
+	% Bewohner: Heute gibt’s keinen Rabatt.
+	Player: Ich suche etwas ganz Bestimmtes.
+	Bewohner: Na dann, raus mit der Sprache!
+	Player: ...
+	- Ein Talisman gegen Flüche.
+		Bewohner: Noch einen, hm? Kostet doppelt nach Sonnenuntergang.
+	- Einen Kompass für die Sümpfe.
+		Bewohner: Nicht billig, aber zuverlässig.
+- Tür mit dem Fuß aufstoßen.
+	Player: *Tritt gegen die Tür*
+	Bewohner: [[Spinnst du?!|Das zahlst du mir!|Hausfriedensbruch!]]
+	Player: Ich dachte, das Haus sei leer.
+	Bewohner: Dann klopf doch wie ein zivilisierter Mensch!
+Bewohner: Und jetzt hau ab.
+- Nochmals nachfragen => Start2
+- Ende => END
+=> END

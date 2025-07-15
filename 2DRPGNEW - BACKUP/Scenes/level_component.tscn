@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4wi35uslgvco"]
+
+[ext_resource type="Script" uid="uid://bh67pihj12fh4" path="res://Scripts/level_component.gd" id="1_8wthk"]
+[ext_resource type="FontFile" uid="uid://c8fqvdvlp8x0h" path="res://Font/BetterPixels.ttf" id="2_8ml87"]
+[ext_resource type="Texture2D" uid="uid://drvjc0tv0kcq0" path="res://Sprite/EXPBar/EXPBar.png" id="2_r1y4e"]
+[ext_resource type="Texture2D" uid="uid://b5lnpl0ii5nfj" path="res://Sprite/EXPBar/EXPBarOver.png" id="3_nngkb"]
+[ext_resource type="Script" uid="uid://d0vwguuxai8gd" path="res://Scripts/exp_bar.gd" id="4_8ml87"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nngkb"]
+font = ExtResource("2_8ml87")
+font_size = 235
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-0.24, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ml87"]
+font = ExtResource("2_8ml87")
+font_size = 160
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LevelComponent" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_8wthk")
+
+[node name="Control" type="Control" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 16.22
+offset_bottom = 7.68
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 0.35
+offset_top = -4.105
+offset_right = 18.35
+offset_bottom = 87.895
+scale = Vector2(0.04, 0.04)
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = -35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nngkb")
+
+[node name="Level" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8ml87")
+horizontal_alignment = 2
+
+[node name="EXPBar" type="TextureProgressBar" parent="Control"]
+y_sort_enabled = true
+layout_mode = 2
+offset_top = 1.0
+offset_right = 16.0
+offset_bottom = 26.0
+step = 0.0
+texture_under = ExtResource("2_r1y4e")
+texture_progress = ExtResource("3_nngkb")
+script = ExtResource("4_8ml87")

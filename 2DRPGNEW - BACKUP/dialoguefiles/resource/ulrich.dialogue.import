@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bxn57tt4sfveh"
+path="res://.godot/imported/ulrich.dialogue-2225a779bfea1d9199464d509f61679a.tres"
+
+[deps]
+
+source_file="res://dialoguefiles/resource/ulrich.dialogue"
+dest_files=["res://.godot/imported/ulrich.dialogue-2225a779bfea1d9199464d509f61679a.tres"]
+
+[params]
+
+defaults=true

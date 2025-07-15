@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://fq7bmkyix17g"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_sx7iq"]
+[ext_resource type="AudioStream" uid="uid://cb5baowpvu5oq" path="res://FX/scissor_attack.mp3" id="2_pf1e5"]
+
+[resource]
+script = ExtResource("1_sx7iq")
+stream = ExtResource("2_pf1e5")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

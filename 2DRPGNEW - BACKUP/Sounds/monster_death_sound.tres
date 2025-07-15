@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://ct7aj0sbehlhv"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_jthah"]
+[ext_resource type="AudioStream" uid="uid://iugl4d0ylwla" path="res://FX/monster_death.wav" id="2_fqbmj"]
+
+[resource]
+script = ExtResource("1_jthah")
+stream = ExtResource("2_fqbmj")
+volume_db = 0.0
+is_2d = false
+use_random_pitch = false
+pitch_min = 1.0
+pitch_max = 1.0
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

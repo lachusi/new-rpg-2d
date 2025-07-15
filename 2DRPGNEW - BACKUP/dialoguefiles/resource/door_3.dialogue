@@ -1,0 +1,25 @@
+~ Start
+Player: Vielleicht finde ich hier Hilfe oder ein paar Vorräte.
+~ Start2
+Player: ...
+- Klopfen.
+	Bewohner: Komm rein oder sag, was du brauchst!
+	% Bewohner: Warte, ich suche mein Gewand...
+	% Bewohner: Oh! Ein Besucher!
+	% Bewohner: Endlich jemand!
+	Player: Entschuldigt die Störung. Ich brauche einen Rat.
+	Bewohner: Red schon.
+	Player: ...
+	- Gibt es in der Nähe Heilpflanzen?
+		Bewohner: Im Schatten des Hügels wachsen viele.
+	- Habt ihr etwas gegen Erkältung?
+		Bewohner: Ein Aufguss aus Pfefferminze und Honig hilft oft.
+- Mit der Schulter gegen die Tür drücken.
+	Player: *Versucht einzudringen*
+	Bewohner: [[Was soll das?|Ich bin unbewaffnet!|Warum so grob?]]
+	Player: Ich dachte, hier sei niemand. Verzeiht.
+	Bewohner: Dann klopf doch wie jeder andere.
+Bewohner: Sei achtsam, Wanderer.
+- Nochmals fragen => Start2
+- Tschüss => END
+=> END

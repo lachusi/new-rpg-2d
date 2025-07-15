@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b71raxpqcrboe"
+path="res://.godot/imported/peter.dialogue-5b7ea0224500a0faf660bf18692a5269.tres"
+
+[deps]
+
+source_file="res://dialoguefiles/resource/peter.dialogue"
+dest_files=["res://.godot/imported/peter.dialogue-5b7ea0224500a0faf660bf18692a5269.tres"]
+
+[params]
+
+defaults=true

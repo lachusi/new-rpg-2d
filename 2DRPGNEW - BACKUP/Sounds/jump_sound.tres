@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundData" load_steps=3 format=3 uid="uid://c8h11elqkh0hg"]
+
+[ext_resource type="Script" uid="uid://bb0asoah2qxrb" path="res://Sounds/sound_data.gd" id="1_vibro"]
+[ext_resource type="AudioStream" uid="uid://cvs67stnr64dd" path="res://FX/jump.wav" id="2_m0acb"]
+
+[resource]
+script = ExtResource("1_vibro")
+stream = ExtResource("2_m0acb")
+volume_db = -8.0
+is_2d = true
+use_random_pitch = true
+pitch_min = 0.6
+pitch_max = 1.4
+pitch_fixed = 1.0
+max_distance = 100.0
+metadata/_custom_type_script = "uid://bb0asoah2qxrb"

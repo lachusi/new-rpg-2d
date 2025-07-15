@@ -1,0 +1,10 @@
+~ Start
+Klaus: [[Hi|Hallo|Moin]].
+Player: ...
+- Hallo.
+	Klaus: Mehr hast du nicht zu sagen?
+- Kannst du mir weiterhelfen?
+	Klaus: Seh' ich aus wie dein Papa?
+- Frage erneut => Start
+- Konversation beenden => END
+=> END

@@ -1,0 +1,12 @@
+~ Start
+Peter: [[Hi|Hallo|Moin]], ich erzähl dir mal etwas.
+Peter: Gestern ist mir meine Gurke heruntergefallen. Was meinst du habe ich dann getan?
+Player: ...
+- Die Seife aufgehoben?
+	Peter: Falsch du Hurensohn.
+- Die Gurke mit einem Dropkick gen Himmel befördert?
+	Peter: Richtig du Analrakete.
+- Frage erneut => Start
+- Konversation beenden => END
+Peter: Geduld ist eine Tugend.
+=> END

@@ -1,0 +1,11 @@
+~ Start
+Norbert: [[Hi|Hallo|Moin]].
+Player: ...
+- Hallo. Gibt es Arbeit zu erledigen?
+	Norbert: Seitdem Stefanie den Hof verlassen hat, gibt es reichlich Arbeit. Allerdings kriege ich das schon ganz gut alleine hin.
+- Hi. Ich suche nach Informationen.
+	Norbert: Präzisiere deine Anfrage du Endlosversager.
+- Frage erneut => Start
+- Konversation beenden => END
+Norbert: Am Ende des Flusses warten Koikarpfen, die gefangen werden wollen.
+=> END

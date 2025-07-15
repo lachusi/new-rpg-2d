@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsddjq7b8t8rp"]
+
+[ext_resource type="Script" uid="uid://bm1eb66npo2ip" path="res://Scripts/States/world_state_machine.gd" id="1_r4cxo"]
+
+[node name="WorldStateMachine" type="Node"]
+script = ExtResource("1_r4cxo")
