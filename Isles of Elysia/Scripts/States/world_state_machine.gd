@@ -14,6 +14,7 @@ var animplayer
 var state_machine
 
 func init(_entity, _input_component, _move_component, _animplayer, _state_machine):
+	print("HERRO")
 	entity = _entity
 	input_component = _input_component
 	move_component = _move_component

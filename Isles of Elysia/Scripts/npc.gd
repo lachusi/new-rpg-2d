@@ -17,7 +17,6 @@ enum MovementType { STATIC, RANDOM_WALK }
 var facing_direction: Vector2 = Vector2.DOWN
 
 func _ready():
-	print("hallo bin da")
 	wait_timer.timeout.connect(_on_wait_timeout)
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, null, move_component, animplayer)

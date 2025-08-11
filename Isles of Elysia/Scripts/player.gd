@@ -10,12 +10,34 @@ class_name Player
 @onready var sprite: Sprite2D = $Sprite2D
 
 var facing_direction: Vector2 = Vector2.RIGHT
+var can_move: bool = true
+var turn_manager: TurnManager = null
+
+signal move_completed
 
 func _ready():
+	add_to_group("player")
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, input_component, move_component, animplayer)
 
-func _unhandled_input(event): state_machine._unhandled_input(event)
+	# Turn Manager Verbindung nach einem Frame
+	call_deferred("_connect_turn_manager")
+
+func _connect_turn_manager():
+	turn_manager = get_node_or_null("/root/TurnManager")
+	if turn_manager:
+		turn_manager.player_turn_started.connect(_on_player_turn_started)
+		turn_manager.enemy_turn_started.connect(_on_enemy_turn_started)
+
+func _on_player_turn_started():
+	can_move = true
+
+func _on_enemy_turn_started():
+	can_move = false
+
+func _unhandled_input(event): 
+	if can_move:
+		state_machine._unhandled_input(event)
 func _physics_process(delta): state_machine._physics_process(delta)
 func _process(delta): state_machine._process(delta)
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var state_machine = $StateMachine
-@onready var world_state_machine = $WorldStateMachine
+@onready var world_state_machine: WorldStateMachine = $WorldStateMachine
 @onready var input_component = $Components/InputComponent
 @onready var move_component = $Components/MoveComponent
 @onready var animplayer = $AnimationPlayer

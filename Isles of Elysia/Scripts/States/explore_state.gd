@@ -14,6 +14,4 @@ func enter():
 
 func _on_start_battle(enemy):
 	print("📣 Kampfsignal empfangen im ExploreState!")
-	if entity and enemy:
-		TurnManager.start_battle([entity.player, enemy])
 	world_state_machine.transition_to(battle_state)

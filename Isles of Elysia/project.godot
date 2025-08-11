@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2DRPGNEW - BACKUP"
+config/name="Isles of Elysia - GIT"
 run/main_scene="uid://dsr5dvvvpibbj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Tilemanager="*res://Scripts/Tilemanager.gd"
-GameManager="*res://Scripts/game_manager.gd"
 TurnManager="*res://Scripts/turn_manager.gd"
 
 [dialogue_manager]

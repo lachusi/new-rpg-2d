@@ -13,14 +13,14 @@ func _process(_delta):
 
 func enter():
 	print("⚔ Kampfrunde gestartet!")
-	if not TurnManager.is_connected("turn_started", Callable(self, "_on_turn_started")):
-		TurnManager.connect("turn_started", Callable(self, "_on_turn_started"))
+	if not TurnManager.is_connected("player_turn_started", Callable(self, "_on_player_turn_started")):
+		TurnManager.connect("player_turn_started", Callable(self, "_on_player_turn_started"))
 	if not TurnManager.is_connected("battle_ended", Callable(self, "_on_battle_ended")):
 		TurnManager.connect("battle_ended", Callable(self, "_on_battle_ended"))
 
 func exit():
-	if TurnManager.is_connected("turn_started", Callable(self, "_on_turn_started")):
-		TurnManager.disconnect("turn_started", Callable(self, "_on_turn_started"))
+	if TurnManager.is_connected("player_turn_started", Callable(self, "_on_player_turn_started")):
+		TurnManager.disconnect("player_turn_started", Callable(self, "_on_player_turn_started"))
 	if TurnManager.is_connected("battle_ended", Callable(self, "_on_battle_ended")):
 		TurnManager.disconnect("battle_ended", Callable(self, "_on_battle_ended"))
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://dsr5dvvvpibbj"]
 
 [ext_resource type="PackedScene" uid="uid://df4msfek8raf3" path="res://Scenes/player.tscn" id="1_hgpy0"]
-[ext_resource type="Script" uid="uid://bifdlftnpskq0" path="res://Scripts/game_manager.gd" id="1_kn0ld"]
+[ext_resource type="Script" uid="uid://bifdlftnpskq0" path="res://Scripts/game_manager.gd" id="1_t2t4p"]
 [ext_resource type="PackedScene" uid="uid://buma01ygt4cq5" path="res://Scenes/npc_1.tscn" id="2_t2t4p"]
 [ext_resource type="Texture2D" uid="uid://bxekdt6snv2uq" path="res://Tileset/Kenney.nl/Tilesheet/colored_packed.png" id="6_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bonuxy7bgfa8o" path="res://Tileset/PixelLab/TileSetAll.png" id="7_5v1tr"]
@@ -4021,7 +4021,7 @@ sources/2 = SubResource("TileSetAtlasSource_t2t4p")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_kn0ld")
+script = ExtResource("1_t2t4p")
 metadata/_edit_vertical_guides_ = [320.0]
 metadata/_edit_horizontal_guides_ = [720.0]
 
@@ -4030,6 +4030,7 @@ position = Vector2(400, 224)
 
 [node name="NPC1" parent="." instance=ExtResource("2_t2t4p")]
 position = Vector2(432, 208)
+movement_type = 0
 
 [node name="BlobBlue" parent="." instance=ExtResource("18_0pcbe")]
 position = Vector2(224, 336)
