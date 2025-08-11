@@ -25,10 +25,40 @@ var current_track_index: int = 0
 var player: AudioStreamPlayer
 var fade_time := 1.5
 
+var world_state_machine: Node = null
+
 func _ready():
 	player = AudioStreamPlayer.new()
 	add_child(player)
-	play_next_track()
+
+	_connect_world_state_machine()
+	_apply_initial_state()
+
+func _connect_world_state_machine():
+	# Pfad analog zu world_state_label.gd
+	world_state_machine = get_node_or_null("/root/World/WorldStateMachine")
+	if world_state_machine and world_state_machine.has_signal("state_changed"):
+		world_state_machine.connect("state_changed", Callable(self, "_on_world_state_changed"))
+
+func _apply_initial_state():
+	if world_state_machine and world_state_machine.current_state:
+		_on_world_state_changed(world_state_machine.current_state)
+	else:
+		# Fallback: Explore starten
+		play_next_track()
+
+func _on_world_state_changed(new_state):
+	var name := ""
+	if new_state and "name" in new_state:
+		name = String(new_state.name)
+
+	# Mapping per State-Name
+	if name.findn("Battle") != -1:
+		change_state("battle")
+	elif name.findn("Boss") != -1:
+		change_state("boss")
+	else:
+		change_state("explore")
 
 func play_next_track():
 	var tracks = music_states.get(current_state, [])
@@ -55,8 +85,9 @@ func change_state(new_state: String):
 	_transition_to_next()
 
 func _transition_to_next():
+	# Sanftes Ausblenden des aktuellen Tracks, dann nächsten starten
 	var tween := create_tween()
-	tween.tween_property(player, "volume_db", -40.0, fade_time).as_relative()
+	tween.tween_property(player, "volume_db", -30.0, fade_time) # absolut
 	tween.tween_callback(_on_fade_out_done)
 
 func _on_fade_out_done():
