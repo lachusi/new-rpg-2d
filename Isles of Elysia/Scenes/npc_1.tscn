@@ -400,7 +400,7 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_2u28w")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("15_2u28w")]
-initial_state = NodePath("MoveState")
+initial_state = NodePath("IdleState")
 
 [node name="IdleState" parent="StateMachine" node_paths=PackedStringArray("move_state") instance=ExtResource("16_k2jb2")]
 move_state = NodePath("../MoveState")

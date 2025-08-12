@@ -52,12 +52,16 @@ func _on_world_state_changed(new_state):
 	if new_state and "name" in new_state:
 		name = String(new_state.name)
 
-	# Mapping per State-Name
+# Bei BattleState battle_kind aus WorldStateMachine lesen ("boss" oder "battle")
 	if name.findn("Battle") != -1:
-		change_state("battle")
-	elif name.findn("Boss") != -1:
-		change_state("boss")
-	else:
+		var kind := "battle"
+		if world_state_machine and world_state_machine.has_meta("battle_kind"):
+			kind = String(world_state_machine.get_meta("battle_kind"))
+		if kind == "boss":
+			change_state("boss")
+		else:
+			change_state("battle")
+	elif name.findn("Explore") != -1:
 		change_state("explore")
 
 func play_next_track():

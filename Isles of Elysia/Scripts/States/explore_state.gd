@@ -14,4 +14,8 @@ func enter():
 
 func _on_start_battle(enemy):
 	print("📣 Kampfsignal empfangen im ExploreState!")
+	if enemy and enemy.is_in_group("BOSS"):
+		world_state_machine.set_meta("battle_kind", "boss")
+	else:
+		world_state_machine.set_meta("battle_kind", "battle")
 	world_state_machine.transition_to(battle_state)

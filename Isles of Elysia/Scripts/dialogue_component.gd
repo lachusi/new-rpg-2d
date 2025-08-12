@@ -19,7 +19,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("ui_accept"):
 				start_dialogue()
 		else:
-			push_warning("Explore State not assigned!")
+			push_warning("Can't start dialogue because of BattleState!")
 			return
 
 func _on_body_entered(body):

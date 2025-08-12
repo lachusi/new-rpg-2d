@@ -40,7 +40,23 @@ func _physics_process(delta):
 func start_move(direction: Vector2) -> bool:
 	if is_moving or direction == Vector2.ZERO:
 		return false
-		
+	# Kachelprüfung
+	var target_pos := entity.position + direction * tile_size
+	if Tilemanager.is_tile_occupied(target_pos):
+		return false
+	if ray:
+		ray.target_position = direction * tile_size
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			return false
+	Tilemanager.release_tile(entity.position, entity)
+	if not Tilemanager.reserve_tile(target_pos, entity):
+		return false
+	is_moving = true
+	initial_position = entity.position
+	move_direction = direction
+	percent_moved = 0.0
+	return true
 	if direction.x > 0:
 		last_direction = Vector2.RIGHT
 		entity.sprite.flip_h = false
@@ -62,22 +78,16 @@ func start_move(direction: Vector2) -> bool:
 		# Nach Bewegung: Turn beenden
 		var moved = false
 		move_direction = direction
-		var target_pos = entity.position + direction * tile_size
-
 		if Tilemanager.is_tile_occupied(target_pos):
 			return false
-
 		if ray:
 			ray.target_position = direction * tile_size
 			ray.force_raycast_update()
 			if ray.is_colliding():
 				return false
-
 		if not Tilemanager.reserve_tile(target_pos, entity):
 			return false
-
 		Tilemanager.release_tile(entity.position, entity)
-
 		initial_position = entity.position
 		percent_moved = 0.0
 		is_moving = true
@@ -86,27 +96,19 @@ func start_move(direction: Vector2) -> bool:
 			entity.facing_direction = direction
 		_play_animation(direction)
 		moved = true
-
 		return moved
-
 	# Normale Bewegung (wie gehabt)
 	move_direction = direction
-	var target_pos = entity.position + direction * tile_size
-
 	if Tilemanager.is_tile_occupied(target_pos):
 		return false
-
 	if ray:
 		ray.target_position = direction * tile_size
 		ray.force_raycast_update()
 		if ray.is_colliding():
 			return false
-
 	if not Tilemanager.reserve_tile(target_pos, entity):
 		return false
-
 	Tilemanager.release_tile(entity.position, entity)
-
 	initial_position = entity.position
 	percent_moved = 0.0
 	is_moving = true
@@ -122,13 +124,12 @@ func can_attack(target: CharacterBody2D) -> bool:
 	
 func _move_step(delta):
 	percent_moved += move_speed * delta
-
 	if percent_moved >= 1.0:
 		entity.position = initial_position + move_direction * tile_size
 		is_moving = false
 		percent_moved = 0.0
-		Tilemanager.reserve_tile(entity.position, entity)
-		# Optional: Animation hier stoppen oder Idle setzen
+		if entity.has_signal("move_completed"):
+			entity.emit_signal("move_completed")
 	else:
 		entity.position = initial_position + move_direction * tile_size * percent_moved
 		# Laufanimation aktiv halten

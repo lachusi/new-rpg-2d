@@ -12,11 +12,13 @@ class_name Player
 var facing_direction: Vector2 = Vector2.RIGHT
 var can_move: bool = true
 var turn_manager: TurnManager = null
+var step_manager: StepManager
+var next_step_dir: Vector2 = Vector2.ZERO
 
 signal move_completed
 
 func _ready():
-	add_to_group("player")
+	step_manager = get_node_or_null("/root/StepManager")
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, input_component, move_component, animplayer)
 
@@ -35,7 +37,9 @@ func _on_player_turn_started():
 func _on_enemy_turn_started():
 	can_move = false
 
-func _unhandled_input(event): 
+func _unhandled_input(event):
+	if not step_manager or step_manager.is_stepping:
+		return
 	if can_move:
 		state_machine._unhandled_input(event)
 func _physics_process(delta): state_machine._physics_process(delta)
