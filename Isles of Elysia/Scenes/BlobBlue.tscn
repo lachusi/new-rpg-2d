@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://s6ixhpqovqb8"]
+[gd_scene load_steps=34 format=3 uid="uid://s6ixhpqovqb8"]
 
 [ext_resource type="Script" uid="uid://dn46rx6to5sv6" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="PackedScene" uid="uid://dup3y0fubjk2l" path="res://Scenes/hitbox_component.tscn" id="2_ghaa6"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://c8fqvdvlp8x0h" path="res://Font/BetterPixels.ttf" id="13_hopk4"]
 [ext_resource type="PackedScene" uid="uid://cb6tyqfxwwt71" path="res://Scenes/idle_state.tscn" id="14_b6lw2"]
 [ext_resource type="PackedScene" uid="uid://330xxfa0jutp" path="res://Scenes/attack_state.tscn" id="15_a1evp"]
+[ext_resource type="PackedScene" uid="uid://cs54kf84qeh8v" path="res://Scenes/chase_state.tscn" id="17_b6lw2"]
 [ext_resource type="PackedScene" uid="uid://v7ew21ryo2r8" path="res://Scenes/patrol_state.tscn" id="17_cyohq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auwsv"]
@@ -659,7 +660,6 @@ attack_damage = 5.0
 [node name="DummyHealthComponent" parent="Components" instance=ExtResource("10_hopk4")]
 
 [node name="MoveComponent" parent="Components" instance=ExtResource("9_s5axk")]
-move_speed = 2.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 visible = false
@@ -699,6 +699,10 @@ idle_state = NodePath("../IdleState")
 
 [node name="PatrolState" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("17_cyohq")]
 idle_state = NodePath("../IdleState")
+
+[node name="ChaseState" parent="StateMachine" node_paths=PackedStringArray("attack_state", "patrol_state") instance=ExtResource("17_b6lw2")]
+attack_state = NodePath("../AttackState")
+patrol_state = NodePath("../PatrolState")
 
 [node name="Control" type="Control" parent="."]
 z_index = 2

@@ -4,7 +4,6 @@ var world_state_machine
 
 func _ready():
 	world_state_machine = get_node_or_null("/root/World/WorldStateMachine")
-	print(world_state_machine)
 	if world_state_machine:
 		world_state_machine.connect("state_changed", Callable(self, "_on_state_changed"))
 		# Falls current_state schon da ist, sofort anzeigen:

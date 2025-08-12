@@ -7,6 +7,8 @@ class_name Enemy
 @onready var world_state_machine: WorldStateMachine = $"../WorldStateMachine"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var move_component: MoveComponent = $Components/MoveComponent
+@onready var health_component: HealthComponent = $Components/HealthComponent
+@onready var chase_state: Node = $StateMachine/ChaseState
 @onready var weapon_component: Node = $Components/WeaponComponent
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -23,9 +25,9 @@ func _ready():
 func compute_step_direction(p: Player) -> Vector2:
 	if not p:
 		return _random_dir()
-	var delta := p.position - position
-	var tile_size := move_component.tile_size
-	var dist_tiles = abs(delta.x)/tile_size + abs(delta.y)/tile_size
+	var delta := p.global_position - global_position
+	var tile = float(move_component.tile_size)
+	var dist_tiles = abs(delta.x)/tile + abs(delta.y)/tile
 	if dist_tiles <= sight_range_tiles and _has_los(p):
 		if abs(delta.x) > abs(delta.y):
 			return Vector2(sign(delta.x), 0)

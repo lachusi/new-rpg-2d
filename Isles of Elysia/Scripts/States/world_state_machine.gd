@@ -14,7 +14,6 @@ var animplayer
 var state_machine
 
 func init(_entity, _input_component, _move_component, _animplayer, _state_machine):
-	print("HERRO")
 	entity = _entity
 	input_component = _input_component
 	move_component = _move_component
@@ -24,13 +23,10 @@ func init(_entity, _input_component, _move_component, _animplayer, _state_machin
 	# Initialisierung aller States
 	for child in get_children():
 		if child is State:
-			print("Initialisiere World-State: ", child.name)
-			print("Initialisiere World-State: ", self.name)
 			child.init(entity, self, input_component, move_component, animplayer, state_machine)
 
 	# Initialer Zustand
 	if initial_state:
-		print("Ich explore")
 		current_state = initial_state
 		current_state.enter()
 		emit_signal("state_changed", current_state)

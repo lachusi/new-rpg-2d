@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cuc5hf3xsgv8l"]
+[gd_scene load_steps=41 format=3 uid="uid://cuc5hf3xsgv8l"]
 
 [ext_resource type="Script" uid="uid://dn46rx6to5sv6" path="res://Scripts/enemy.gd" id="1_4xtyq"]
 [ext_resource type="PackedScene" uid="uid://bmw8yidy2pkfy" path="res://Scenes/health_component.tscn" id="2_mrghl"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://t5312t3ikqdo" path="res://FX/Visual/Godot-particle-and-vfx-textures-main/materials/rendered_textures/spotlight_3.png" id="16_my7j7"]
 [ext_resource type="PackedScene" uid="uid://330xxfa0jutp" path="res://Scenes/attack_state.tscn" id="16_rpit6"]
 [ext_resource type="PackedScene" uid="uid://cb6tyqfxwwt71" path="res://Scenes/idle_state.tscn" id="17_33vqk"]
+[ext_resource type="PackedScene" uid="uid://cs54kf84qeh8v" path="res://Scenes/chase_state.tscn" id="19_rpit6"]
 [ext_resource type="PackedScene" uid="uid://v7ew21ryo2r8" path="res://Scenes/patrol_state.tscn" id="20_33vqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auwsv"]
@@ -612,6 +613,10 @@ patrol_state = NodePath("../PatrolState")
 
 [node name="PatrolState" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("20_33vqk")]
 idle_state = NodePath("../IdleState")
+
+[node name="ChaseState" parent="StateMachine" node_paths=PackedStringArray("attack_state", "patrol_state") instance=ExtResource("19_rpit6")]
+attack_state = NodePath("../AttackState")
+patrol_state = NodePath("../PatrolState")
 
 [node name="Flare" type="Sprite2D" parent="."]
 process_mode = 3

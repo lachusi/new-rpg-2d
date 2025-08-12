@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 
 	# Kein Sichtkontakt → zurück zur Patrouille
 	if not player_detected:
-		print("Wechsle zu:", patrol_state)
 		state_machine.transition_to(patrol_state)
 		return
 
