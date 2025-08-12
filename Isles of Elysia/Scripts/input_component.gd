@@ -3,13 +3,13 @@ class_name InputComponent
 
 func get_move_input() -> Vector2:
 	var input = Vector2.ZERO
-	if Input.is_action_just_pressed("move_right"):
+	if Input.is_action_pressed("move_right"):
 		input.x += 1
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_pressed("move_left"):
 		input.x -= 1
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_pressed("move_down"):
 		input.y += 1
-	if Input.is_action_just_pressed("move_up"):
+	if Input.is_action_pressed("move_up"):
 		input.y -= 1
 
 	# Nur eine Richtung zulassen für tilebasiert

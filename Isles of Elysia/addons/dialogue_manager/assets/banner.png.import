@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drvp3ky8nwu8a"
-path="res://.godot/imported/random_selection.png-dd93d65369e3f05d763ea6a80bc1088a.ctex"
+uid="uid://cnm67htuohhlo"
+path="res://.godot/imported/banner.png-7e9e6a304eef850602c8d5afb80df9c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://FX/Visual/Godot-particle-and-vfx-textures-main/src/resources/random_selection.png"
-dest_files=["res://.godot/imported/random_selection.png-dd93d65369e3f05d763ea6a80bc1088a.ctex"]
+source_file="res://addons/dialogue_manager/assets/banner.png"
+dest_files=["res://.godot/imported/banner.png-7e9e6a304eef850602c8d5afb80df9c3.ctex"]
 
 [params]
 
