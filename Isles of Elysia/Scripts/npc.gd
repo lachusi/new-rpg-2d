@@ -14,26 +14,32 @@ enum MovementType { STATIC, RANDOM_WALK }
 @onready var move_component: MoveComponent = $Components/MoveComponent
 @onready var wait_timer: Timer = $WaitTimer
 
+signal move_completed
+
 var facing_direction: Vector2 = Vector2.DOWN
 
 func _ready():
 	wait_timer.timeout.connect(_on_wait_timeout)
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, null, move_component, animplayer)
+	
+	if ray:
+		ray.exclude_parent = true
+		ray.enabled = true
 
+	# Auf Bewegungsende reagieren und erneut warten
+	if not is_connected("move_completed", _on_move_completed):
+		connect("move_completed", _on_move_completed)
 	if movement_type == MovementType.RANDOM_WALK:
-		print("warte")
 		start_waiting()
-
-func get_component(name: String) -> Node:
-	var components_node = get_node_or_null("Components")
-	if components_node and components_node.has_node(name):
-		return components_node.get_node(name)
-	return null
+		
+func _on_move_completed() -> void:
+	# Nach einem Schritt wieder warten und nächsten Versuch planen
+	start_waiting()
 
 func _physics_process(delta):
 	if health_component and not health_component.is_alive:
-		return	
+		return
 	state_machine._physics_process(delta)
 
 func _unhandled_input(event):
@@ -48,7 +54,6 @@ func _process(delta):
 
 func _on_wait_timeout():
 	if movement_type != MovementType.RANDOM_WALK:
-		print("bin statisch")
 		return
 
 	var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
@@ -56,7 +61,6 @@ func _on_wait_timeout():
 
 	for dir in directions:
 		if can_move_in_direction(dir):
-			print("kann mich in richtungen bewegen")
 			facing_direction = dir
 			move_component.start_move(dir)
 			return
@@ -64,7 +68,6 @@ func _on_wait_timeout():
 	start_waiting()  # Wenn keine Richtung möglich
 
 func start_waiting():
-	print("Timeout")
 	wait_timer.wait_time = randf_range(1.0, 3.0)
 	wait_timer.start()
 
@@ -73,6 +76,8 @@ func start_waiting():
 # =============================
 
 func can_move_in_direction(direction: Vector2) -> bool:
-	ray.target_position = direction.normalized() * 8  # Halbe Tile-Größe
+	if not ray:
+		return true
+	ray.target_position = direction.normalized() * move_component.tile_size
 	ray.force_raycast_update()
 	return !ray.is_colliding()

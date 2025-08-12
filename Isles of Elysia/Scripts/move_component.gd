@@ -3,6 +3,7 @@ class_name MoveComponent
 
 @export var tile_size: int = 16
 @export var move_speed: float = 4.0
+@export var enforce_step_sync: bool = true
 
 var is_moving := false
 var can_turn := false
@@ -15,6 +16,7 @@ var animplayer: AnimationPlayer
 var ray: RayCast2D
 var state_machine: Node = null
 var world_state_machine: Node = null
+var step_manager: Node = null
 
 func _ready():
 	last_direction = Vector2.RIGHT
@@ -28,6 +30,9 @@ func init(_entity: CharacterBody2D, _animplayer: AnimationPlayer, _state_machine
 	ray = entity.get_node_or_null("RayCast2D")
 	if ray:
 		ray.enabled = true
+		ray.exclude_parent = true
+	
+	step_manager = get_node_or_null("/root/StepManager")
 
 func is_in_battle_state() -> bool:
 	return world_state_machine and world_state_machine.current_state and world_state_machine.current_state.get_class() == "BattleState"
@@ -38,6 +43,22 @@ func _physics_process(delta):
 	_move_step(delta)
 
 func start_move(direction: Vector2) -> bool:
+# Schritt-Sync erzwingen: Player triggert Tick, Enemies dürfen nur im Tick ziehen
+	if enforce_step_sync and step_manager:
+		if entity.is_in_group("Player"):
+			# Wenn noch kein Tick läuft → Tick starten (dieser ruft dann erneut start_move für den Player auf)
+			if not step_manager.is_stepping:
+				return step_manager.start_step(direction)
+			# Wenn Tick schon läuft, nur ziehen wenn freigegeben
+			if not step_manager.can_entity_move(entity):
+				return false
+		elif entity.is_in_group("Enemy"):
+			# Gegner dürfen nur im aktiven Tick und wenn freigegeben
+			if not step_manager.can_entity_move(entity):
+				return false
+		# NPCs u. a. sind nicht betroffen
+
+	
 	if is_moving or direction == Vector2.ZERO:
 		return false
 	# Kachelprüfung
@@ -49,9 +70,11 @@ func start_move(direction: Vector2) -> bool:
 		ray.force_raycast_update()
 		if ray.is_colliding():
 			return false
+	# Tile-Reservierung
 	Tilemanager.release_tile(entity.position, entity)
 	if not Tilemanager.reserve_tile(target_pos, entity):
 		return false
+	# Bewegung starten
 	is_moving = true
 	initial_position = entity.position
 	move_direction = direction

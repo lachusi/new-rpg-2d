@@ -19,6 +19,7 @@ signal move_completed
 
 func _ready():
 	step_manager = get_node_or_null("/root/StepManager")
+	print(step_manager)
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, input_component, move_component, animplayer)
 
