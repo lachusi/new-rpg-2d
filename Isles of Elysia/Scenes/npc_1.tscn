@@ -442,5 +442,3 @@ offset_top = 0.5
 offset_right = 5.5
 offset_bottom = 13.5
 label_settings = SubResource("LabelSettings_vcxdy")
-
-[node name="WaitTimer" type="Timer" parent="."]

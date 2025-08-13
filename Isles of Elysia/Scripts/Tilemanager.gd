@@ -21,3 +21,10 @@ func release_tile(position: Vector2, entity: Node) -> void:
 func is_tile_occupied(position: Vector2) -> bool:
 	var key = tile_key(position)
 	return occupied_tiles.has(key)
+
+# Falls Position nicht exakt passt
+func release_entity(entity: Node) -> void:
+	for k in occupied_tiles.keys():
+		if occupied_tiles[k] == entity:
+			occupied_tiles.erase(k)
+			return

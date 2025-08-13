@@ -1,56 +1,55 @@
 extends State
 
 @export var idle_state: State
+@export var chase_state: State
 
 @export_range(1.0, 3.0) var patrol_duration_min := 1.0
 @export_range(2.0, 5.0) var patrol_duration_max := 3.0
-@export var step_interval := 0.5  # Wie oft ein Schritt versucht wird
+@export var step_interval := 0.8  # Wie oft ein Schritt versucht wird
 const tile_size := 16
 
+var step_timer := 0.0
 var patrol_timer: SceneTreeTimer = null
 
-signal start_battle(enemy)
+signal start_battle
 
 func enter():
-	move_component.move_speed = 2.0
-	animplayer.speed_scale = 2.0
+	step_timer = 0.0
 
-	# Prüfe DetectionArea des Players
-	if entity.player:
-		var player_detection_area = entity.player.get_node_or_null("DetectionArea")
-		if player_detection_area:
-			for body in player_detection_area.get_overlapping_bodies():
-				if body == entity:
-					print("👁 Gegner hat Spieler entdeckt – Kampfsignal senden")
-					emit_signal("start_battle", entity)
-					return
-
-	# Starte zufällige Patrouillierzeit
-	var patrol_duration = randf_range(patrol_duration_min, patrol_duration_max)
-	patrol_timer = get_tree().create_timer(patrol_duration)
-	patrol_timer.timeout.connect(_on_patrol_timeout)
-
-	# Bewegung starten (in zufälliger Richtung)
+func _set_random_step_intent():
 	var dirs = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	dirs.shuffle()
-	for dir in dirs:
-		if can_move_in_direction(dir):
-			entity.facing_direction = dir
-			move_component.start_move(dir)
-			break
+	for d in dirs:
+		if _can_move_dir(d):
+			if "step_intent" in entity:
+				entity.step_intent = d
+			if "facing_direction" in entity:
+				entity.facing_direction = d
+			if entity.move_component:
+				entity.move_component.last_direction = d
 
-func _on_patrol_timeout():
-	state_machine.transition_to(idle_state)
+func _physics_process(delta: float) -> State:
+	# Sichtprüfung: Distanz + LOS
+	if entity.player and entity.distance_tiles_to_player() <= entity.sight_range_tiles and entity.has_line_of_sight_to_player():
+		return chase_state
 
-func exit():
-	if patrol_timer:
-		patrol_timer.timeout.disconnect(_on_patrol_timeout)
-		patrol_timer = null
+	# Nur wenn kein Sichtkontakt: zufällige Schritt-Intention setzen
+	step_timer -= delta
+	if step_timer <= 0.0:
+		var dirs = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+		dirs.shuffle()
+		for d in dirs:
+			if _can_move_dir(d):
+				entity.step_intent = d
+				break
+		step_timer = step_interval
 
-func can_move_in_direction(dir: Vector2) -> bool:
-	var ray = entity.get_node_or_null("RayCast2D")
-	if not ray:
-		return false
-	ray.target_position = dir * tile_size
-	ray.force_raycast_update()
-	return not ray.is_colliding()
+	return null
+
+func _can_move_dir(d: Vector2) -> bool:
+	var rc: RayCast2D = entity.get_node_or_null("RayCast2D")
+	if not rc:
+		return true
+	rc.target_position = d * entity.move_component.tile_size
+	rc.force_raycast_update()
+	return not rc.is_colliding()

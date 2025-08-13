@@ -611,12 +611,13 @@ idle_state = NodePath("../IdleState")
 attack_state = NodePath("../AttackState")
 patrol_state = NodePath("../PatrolState")
 
-[node name="PatrolState" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("20_33vqk")]
+[node name="PatrolState" parent="StateMachine" node_paths=PackedStringArray("idle_state", "chase_state") instance=ExtResource("20_33vqk")]
 idle_state = NodePath("../IdleState")
+chase_state = NodePath("../ChaseState")
 
-[node name="ChaseState" parent="StateMachine" node_paths=PackedStringArray("attack_state", "patrol_state") instance=ExtResource("19_rpit6")]
-attack_state = NodePath("../AttackState")
+[node name="ChaseState" parent="StateMachine" node_paths=PackedStringArray("patrol_state", "attack_state") instance=ExtResource("19_rpit6")]
 patrol_state = NodePath("../PatrolState")
+attack_state = NodePath("../AttackState")
 
 [node name="Flare" type="Sprite2D" parent="."]
 process_mode = 3

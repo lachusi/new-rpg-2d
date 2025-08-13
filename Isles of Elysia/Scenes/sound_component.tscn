@@ -123,6 +123,5 @@ data = ExtResource("19_13jfe")
 metadata/_custom_type_script = "uid://djn78lu2gf7g1"
 
 [node name="SoundComponent" type="Node2D"]
-process_mode = 2
 script = ExtResource("1_nowwo")
 sound_entries = Array[ExtResource("2_pnvt5")]([SubResource("Resource_oouq4"), SubResource("Resource_qinxl"), SubResource("Resource_xy3am"), SubResource("Resource_xlasm"), SubResource("Resource_2i7fn"), SubResource("Resource_ev33x"), SubResource("Resource_7repp"), SubResource("Resource_jtwq4"), SubResource("Resource_xsnr1"), SubResource("Resource_m6xgs"), SubResource("Resource_4y136"), SubResource("Resource_fd8if"), SubResource("Resource_dboyv"), SubResource("Resource_wkf7r"), SubResource("Resource_28lx2"), SubResource("Resource_13jfe"), SubResource("Resource_qjjvx")])

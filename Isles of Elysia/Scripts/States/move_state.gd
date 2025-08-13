@@ -1,6 +1,7 @@
 extends State
 
 @export var idle_state: State
+@export var attack_state: State
 
 func enter():
 	# Keine Aktionen in enter ausführen (Vermeidet Konflikte)
@@ -23,24 +24,42 @@ func _physics_process(delta):
 	if not move_component.is_moving:
 		if move_component.start_move(dir):
 			return
-		# Blockiert: Prüfe, ob in Zielrichtung 1 Tile entfernt ein Gegner steht → Angriff
+			
+		# Blockiert: Prüfen ob lebender Gegner vor uns -> AttackState
 		var tile := float(move_component.tile_size)
 		var target_pos = entity.global_position + dir * tile
-		if _enemy_at_position(target_pos):
-			_perform_player_attack(dir)
-		else:
-			# kein Gegner direkt davor → zurück zu Idle
-			state_machine.transition_to(idle_state)
+		if _live_enemy_at(target_pos):
+			state_machine.transition_to(attack_state)
+			return
+		# sonst Idle
+		state_machine.transition_to(idle_state)
+		
+func _live_enemy_at(pos: Vector2) -> bool:
+	for e in get_tree().get_nodes_in_group("Enemy"):
+		if not is_instance_valid(e):
+			continue
+		if e.global_position == pos:
+			var hc = e.get_node_or_null("Components/HealthComponent")
+			if hc and hc.is_alive:
+				return true
+	return false
 
 func _enemy_at_position(pos: Vector2) -> bool:
 	for e in get_tree().get_nodes_in_group("Enemy"):
 		if not is_instance_valid(e): 
 			continue
 		if e.global_position == pos:
-			return true
+			var hc: HealthComponent = e.get_node_or_null("Components/HealthComponent")
+			if hc and hc.is_alive:
+				return true
 	return false
 	
 func _perform_player_attack(dir: Vector2) -> void:
+	var tile := float(move_component.tile_size)
+	var ahead = entity.global_position + dir * tile
+	if not _enemy_at_position(ahead):
+		state_machine.transition_to(idle_state)
+		return
 	# Hitbox auslösen
 	if entity.has_method("start_attack"):
 		entity.start_attack()

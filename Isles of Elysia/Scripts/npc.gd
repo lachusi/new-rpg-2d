@@ -12,30 +12,17 @@ enum MovementType { STATIC, RANDOM_WALK }
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_component = $Components/HealthComponent
 @onready var move_component: MoveComponent = $Components/MoveComponent
-@onready var wait_timer: Timer = $WaitTimer
-
-signal move_completed
 
 var facing_direction: Vector2 = Vector2.DOWN
+var step_intent: Vector2 = Vector2.ZERO 
 
 func _ready():
-	wait_timer.timeout.connect(_on_wait_timeout)
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, null, move_component, animplayer)
 	
 	if ray:
 		ray.exclude_parent = true
 		ray.enabled = true
-
-	# Auf Bewegungsende reagieren und erneut warten
-	if not is_connected("move_completed", _on_move_completed):
-		connect("move_completed", _on_move_completed)
-	if movement_type == MovementType.RANDOM_WALK:
-		start_waiting()
-		
-func _on_move_completed() -> void:
-	# Nach einem Schritt wieder warten und nächsten Versuch planen
-	start_waiting()
 
 func _physics_process(delta):
 	if health_component and not health_component.is_alive:
@@ -64,12 +51,6 @@ func _on_wait_timeout():
 			facing_direction = dir
 			move_component.start_move(dir)
 			return
-
-	start_waiting()  # Wenn keine Richtung möglich
-
-func start_waiting():
-	wait_timer.wait_time = randf_range(1.0, 3.0)
-	wait_timer.start()
 
 # =============================
 # HILFSMETHODEN

@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Enemy
 
+enum MovementType { STATIC, RANDOM_WALK }
+
+@export var movement_type: MovementType = MovementType.RANDOM_WALK
+
 @export var sight_range_tiles: int = 8
 
 @onready var state_machine: Node = $StateMachine
@@ -11,18 +15,42 @@ class_name Enemy
 @onready var chase_state: Node = $StateMachine/ChaseState
 @onready var weapon_component: Node = $Components/WeaponComponent
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var ray: RayCast2D = get_node_or_null("RayCast2D")
 
 signal move_completed
 
-var player: Player
+var player: Node = null
 var facing_direction: Vector2 = Vector2.RIGHT
+var step_intent: Vector2 = Vector2.ZERO
 
 func _ready():
-	player = get_tree().get_root().find_child("Player", true, false)
+	add_to_group("Enemy")
+	player = get_tree().get_first_node_in_group("Player")
 	move_component.init(self, animplayer, state_machine)
 	state_machine.init(self, world_state_machine, null, move_component, animplayer)
 
+func has_line_of_sight_to_player() -> bool:
+	if not player:
+		return false
+	if not ray:
+		return true
+	ray.target_position = player.global_position - global_position
+	ray.force_raycast_update()
+	return not ray.is_colliding()
+
+func distance_tiles_to_player() -> float:
+	if not player:
+		return 9999.0
+	var d = player.global_position - global_position
+	return abs(d.x) / move_component.tile_size + abs(d.y) / move_component.tile_size
+
 func compute_step_direction(p: Player) -> Vector2:
+	# Vorrang: geplanter Schritt aus State
+	if step_intent != Vector2.ZERO:
+		var dir := step_intent
+		step_intent = Vector2.ZERO
+		return dir
+		
 	if not p:
 		return _random_dir()
 	var delta := p.global_position - global_position

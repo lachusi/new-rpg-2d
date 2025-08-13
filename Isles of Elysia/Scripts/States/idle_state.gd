@@ -36,10 +36,6 @@ func _unhandled_input(event):
 	if not input_component:
 		return
 
-	if input_component.is_attack_pressed():
-		state_machine.transition_to(attack_state)
-		return
-
 	var dir = input_component.get_move_input()
 	if dir != Vector2.ZERO:
 		state_machine.transition_to(move_state)

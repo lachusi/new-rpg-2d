@@ -32,8 +32,10 @@ func init(_entity, _world_state_machine, _input_component = null, _move_componen
 		emit_signal("state_changed", current_state)
 
 func transition_to(new_state: State):
-	if not new_state:
-		push_error("StateMachine: transition_to() wurde mit null aufgerufen! Prüfe, ob der State im Inspector gesetzt ist.")
+	if new_state == null:
+		push_error("StateMachine: transition_to(null) ignoriert")
+		return
+	if new_state == current_state:
 		return
 	# Aus dem aktuellen State raus
 	if current_state:
