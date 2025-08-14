@@ -6,7 +6,6 @@ class_name HitboxComponent
 @export var is_stunnable: bool = true
 
 func damage(attack: AttackComponent):
-	print("Schaden erhalten!")
 	if health_component:
 		health_component.damage(attack)
 		var direction = (global_position - attack.attack_position).normalized()

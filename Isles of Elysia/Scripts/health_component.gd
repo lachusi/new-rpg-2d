@@ -56,6 +56,9 @@ func damage(attack: AttackComponent):
 	
 	if entity:
 		anim = entity.get_node_or_null("AnimationPlayer")
+		var mc: MoveComponent = entity.get_node_or_null("Components/MoveComponent")
+		if mc and mc.is_moving:
+			mc.cancel_move_interrupted()
 
 	health -= attack.attack_damage
 
@@ -74,13 +77,17 @@ func damage(attack: AttackComponent):
 		if entity:
 			# SICHERES Freigeben: erst über gespeicherten Key (MoveComponent), dann Fallback
 			var mc: MoveComponent = entity.get_node_or_null("Components/MoveComponent")
-			if mc and mc.reserved_key != "":
-				Tilemanager.release_tile(entity.position, entity)  # Versuch normal
-				Tilemanager.release_entity(entity)                 # Fallback falls Key nicht passte
+			if mc:
+				mc.is_moving = false
+				mc.target_key = ""
 				mc.reserved_key = ""
-			else:
-				Tilemanager.release_entity(entity)
-			
+			Tilemanager.release_entity(entity)
+				
+			# StepManager informieren (falls Step noch läuft)
+			var sm = get_tree().get_root().get_node_or_null("StepManager")
+			if sm and sm.has_method("notify_entity_removed"):
+				sm.notify_entity_removed(entity)
+				
 		# Kollisionen deaktivieren
 		var collider = get_parent().get_node_or_null("Hitbox")
 		if collider and collider.has_method("set_deferred"):

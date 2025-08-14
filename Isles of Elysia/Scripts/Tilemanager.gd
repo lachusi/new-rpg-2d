@@ -24,7 +24,10 @@ func is_tile_occupied(position: Vector2) -> bool:
 
 # Falls Position nicht exakt passt
 func release_entity(entity: Node) -> void:
+	# Entfernt ALLE Keys, nicht nur den ersten
+	var to_remove: Array = []
 	for k in occupied_tiles.keys():
 		if occupied_tiles[k] == entity:
-			occupied_tiles.erase(k)
-			return
+			to_remove.append(k)
+	for k in to_remove:
+		occupied_tiles.erase(k)
