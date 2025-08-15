@@ -53,7 +53,6 @@ func damage(attack: AttackComponent):
 	# Prüfe, ob gerade eine Attack-Animation läuft
 	var entity := get_parent().get_parent()
 	var anim: AnimationPlayer = null
-	
 	if entity:
 		anim = entity.get_node_or_null("AnimationPlayer")
 		var mc: MoveComponent = entity.get_node_or_null("Components/MoveComponent")
