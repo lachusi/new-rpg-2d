@@ -16,6 +16,7 @@ var ray: RayCast2D
 var state_machine: Node = null
 var world_state_machine: Node = null
 var step_manager: Node = null
+var queued_direction: Vector2 = Vector2.ZERO
 
 var reserved_key: String = ""   # aktuelles Tile
 var target_key: String = ""     # reserviertes ZielTile während Bewegung
@@ -50,9 +51,21 @@ func init(_entity: CharacterBody2D, _animplayer: AnimationPlayer, _state_machine
 	_reserve_start_tile()
 
 func _reserve_start_tile():
-	if entity and reserved_key == "" and not Tilemanager.is_tile_occupied(entity.position):
-		if Tilemanager.reserve_tile(entity.position, entity):
-			reserved_key = Tilemanager.tile_key(entity.position)
+	if entity == null:
+		return
+	var key = Tilemanager.tile_key(entity.position)
+	if reserved_key == "":
+		# Erst versuchen zu reservieren (falls Szene frisch gespawnt)
+		if not Tilemanager.is_tile_occupied(entity.position):
+			if Tilemanager.reserve_tile(entity.position, entity):
+				reserved_key = key
+	else:
+		# Falls wir schon einen Key haben, sicherstellen dass Konsistenz stimmt
+		if reserved_key != key:
+			# Nach Snap korrigieren (z.B. nach Teleport)
+			if not Tilemanager.is_tile_occupied(entity.position):
+				Tilemanager.reserve_tile(entity.position, entity)
+				reserved_key = key
 
 func _physics_process(delta):
 	if is_moving:
@@ -62,9 +75,16 @@ func start_move(direction: Vector2) -> bool:
 	if entity == null:
 		return false
 
+	# Health / Hurt / Death Lock
+	var hc: HealthComponent = entity.get_node_or_null("Components/HealthComponent")
+	if hc and hc.is_movement_locked():
+		if debug_enabled: print("[MoveComponent][", entity.name, "] denied (hurt/dead lock)")
+		return false
+
 	# Schritt-Sync Gating
 	if enforce_step_sync and step_manager:
 		if entity.is_in_group("Player"):
+			queued_direction = direction
 			if not step_manager.is_stepping:
 				if debug_enabled: print("[MoveComponent][", entity.name, "] delegate start_step dir=", direction)
 				return step_manager.start_step(direction) # delegiert, danach erneuter Aufruf im Dispatch

@@ -155,7 +155,9 @@ func _finish_step():
 	_active_movers.clear()
 	pending_moves = 0
 	step_finished.emit()
-
+	if Engine.has_singleton("Tilemanager"):
+		Tilemanager.call_deferred("sweep")
+		
 # Debug / Notfall
 func force_finish():
 	if debug_enabled:

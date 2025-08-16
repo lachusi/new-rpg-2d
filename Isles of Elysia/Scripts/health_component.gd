@@ -4,9 +4,11 @@ class_name HealthComponent
 @export var level_component : LevelComponent
 @export var MAX_HEALTH := 100.0
 @export var health := 100.0
+@export var hurt_lock_min: float = 0.15
 
 @onready var sound_component: Node = get_component("SoundComponent")
 
+var move_lock_timer: float = 0.0
 var health_bar: TextureProgressBar
 var is_alive := true
 var is_dying := false
@@ -30,6 +32,15 @@ func _ready() -> void:
 			player_level_component = player.get_node("LevelComponent")
 			connect("died", player_level_component.gain_exp)
 
+func _process(delta: float) -> void:
+	if move_lock_timer > 0.0:
+		move_lock_timer -= delta
+		if move_lock_timer < 0.0:
+			move_lock_timer = 0.0
+
+func is_movement_locked() -> bool:
+	return (not is_alive) or is_dying or move_lock_timer > 0.0
+
 func get_component(name: String) -> Node:
 	var components_node = get_node_or_null("Components")
 	if components_node and components_node.has_node(name):
@@ -47,6 +58,7 @@ func update_max_health():
 		health_bar.max_value = MAX_HEALTH
 		health_bar.value = health
 
+
 func damage(attack: AttackComponent):
 	if not is_alive or is_dying:
 		return
@@ -60,7 +72,14 @@ func damage(attack: AttackComponent):
 			mc.cancel_move_interrupted()
 
 	health -= attack.attack_damage
-
+	# Lock (nur wenn noch lebend)
+	if health > 0:
+		var stun_len = 0.0
+		if attack and attack.stun_time > 0.0:
+			stun_len = attack.stun_time
+		# mind. hurt_lock_min
+		move_lock_timer = max(move_lock_timer, max(hurt_lock_min, stun_len))
+		
 	if health_bar:
 		emit_signal("health_changed", health)
 
@@ -68,7 +87,23 @@ func damage(attack: AttackComponent):
 		# Tod behandeln
 		is_alive = false
 		is_dying = true
-			
+		
+		# DEBUG: Todes-Info
+		var ent := entity
+		var mc_debug := ""
+		var held_keys: Array = []
+		for k in Tilemanager.occupied_tiles.keys():
+			if Tilemanager.occupied_tiles[k] == ent:
+				held_keys.append(k)
+		if ent:
+			var mc: MoveComponent = ent.get_node_or_null("Components/MoveComponent")
+			if mc:
+				mc_debug = " reserved_key=%s target_key=%s is_moving=%s" % [mc.reserved_key, mc.target_key, str(mc.is_moving)]
+			var tile_size := 16
+			if mc: tile_size = mc.tile_size
+			var snapped = ent.global_position.snapped(Vector2(tile_size, tile_size))
+			print("[DeathDebug] entity=", ent.name, " pos=", ent.global_position, " snapped=", snapped, " held_tiles=", held_keys, mc_debug)
+		move_lock_timer = 99999.0
 		if anim:
 			anim.play("death", -1, 0.8)
 
@@ -81,7 +116,7 @@ func damage(attack: AttackComponent):
 				mc.target_key = ""
 				mc.reserved_key = ""
 			Tilemanager.release_entity(entity)
-				
+			Tilemanager.call_deferred("sweep")
 			# StepManager informieren (falls Step noch läuft)
 			var sm = get_tree().get_root().get_node_or_null("StepManager")
 			if sm and sm.has_method("notify_entity_removed"):

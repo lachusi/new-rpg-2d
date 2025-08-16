@@ -45,6 +45,8 @@ func distance_tiles_to_player() -> float:
 	return abs(d.x) / move_component.tile_size + abs(d.y) / move_component.tile_size
 
 func compute_step_direction(p: Player) -> Vector2:
+	if health_component and health_component.is_movement_locked():
+		return Vector2.ZERO
 	# Vorrang: geplanter Schritt aus State
 	if step_intent != Vector2.ZERO:
 		var dir := step_intent

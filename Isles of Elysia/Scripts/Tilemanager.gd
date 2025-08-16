@@ -34,6 +34,31 @@ func release_tile(position: Vector2, entity: Node) -> void:
 	elif debug_enabled:
 		print("[TileManager][RELEASE-SKIP]", key, " passt nicht zu entity=", entity, " holder=", occupied_tiles.get(key))
 
+func sweep():
+	var removed := []
+	for k in occupied_tiles.keys():
+		var e = occupied_tiles[k]
+		# Ungültig oder steht nicht mehr wirklich auf diesem Key
+		if not is_instance_valid(e) or tile_key(e.position) != k:
+			removed.append(k)
+	for k in removed:
+		occupied_tiles.erase(k)
+	if debug_enabled and removed.size() > 0:
+		print("[TileManager][SWEEP] removed=", removed, " total=", occupied_tiles.size())
+
+func rebuild_from_scene():
+	occupied_tiles.clear()
+	var groups = ["Player", "Enemy", "NPC"]
+	for g in groups:
+		for e in get_tree().get_nodes_in_group(g):
+			if not is_instance_valid(e):
+				continue
+			var k = tile_key(e.position)
+			if not occupied_tiles.has(k):
+				occupied_tiles[k] = e
+	if debug_enabled:
+		print("[TileManager][REBUILD] total=", occupied_tiles.size())
+
 func is_tile_occupied(position: Vector2) -> bool:
 	return occupied_tiles.has(tile_key(position))
 
@@ -64,6 +89,13 @@ func debug_find_stale():
 		print("[TileManager][STALE] keys=", stale)
 	else:
 		print("[TileManager][STALE] keine")
+
+func debug_entity(entity: Node):
+	var held := []
+	for k in occupied_tiles.keys():
+		if occupied_tiles[k] == entity:
+			held.append(k)
+	print("[TileManager][ENTITY]", entity, " keys=", held, " valid=", is_instance_valid(entity))
 
 func debug_duplicates():
 	var counts := {}
